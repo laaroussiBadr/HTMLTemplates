@@ -1,0 +1,45 @@
+<br />
+<br />
+<div>
+    <div>
+        <div class="input-group">
+            <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <table class="table  table-hover data-table">
+        <thead>
+            <tr>
+                <th><a ng-click="sort('AppSIC',$event)" >App Sic<span class="{{Header[0]}}"></span></a></th>
+                <th><a ng-click="sort('AppSIP')">App SIP<span class="{{Header[1]}}"></span></a> </th>
+                <th><a ng-click="sort('Domain')">App Domaine<span class="{{Header[2]}}"></span></a></th>
+                <th><a ng-click="sort('CreationDate')">App Creation Date <span class="{{Header[3]}}"></span></a> </th>
+                <th><a ng-click="sort('Type')">App Type<span class="{{Header[4]}}"></span></a></th>
+                <th><a ng-click="sort('ServerStatus')">Server Status<span class="{{Header[5]}}"></span></a></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+                <td>{{item.AppSic}}</td>
+                <td>{{item.AppSip}}</td>
+                <td>{{item.Domain}}</td>
+                <td>{{item.CreationDate}}</td>
+                <td>{{item.Type}}</td>
+                <td>{{item.ServerStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination pagination-sm">
+        <li ng-class="{active:0}"><a ng-click="firstPage()">First</a>
+
+        </li>
+        <li ng-repeat="n in range(ItemsByPage.length)"> <a ng-click="setPage()" ng-bind="n+1">1</a>
+
+        </li>
+        <li><a ng-click="lastPage()">Last</a>
+
+        </li>
+    </ul>
+</div>
+</div>
