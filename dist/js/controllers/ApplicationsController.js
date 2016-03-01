@@ -1,4 +1,4 @@
-var AppController = app.controller('AppController', function ($scope, $filter, filteredListService) {
+var AppController = app.controller('AppController', function ($scope, $filter, filteredListServiceApp) {
 
 	$scope.pageSize = 4;
     $scope.allItems = getData(); 
@@ -13,7 +13,7 @@ var AppController = app.controller('AppController', function ($scope, $filter, f
 
     $scope.search = function () {
         $scope.filteredList = 
-       filteredListService.searched($scope.allItems, $scope.searchText);
+       filteredListServiceApp.searched($scope.allItems, $scope.searchText);
         
         if ($scope.searchText == '') {
             $scope.filteredList = $scope.allItems;
@@ -22,7 +22,7 @@ var AppController = app.controller('AppController', function ($scope, $filter, f
     }
 
     $scope.pagination = function () {
-        $scope.ItemsByPage = filteredListService.paged( $scope.filteredList, $scope.pageSize );         
+        $scope.ItemsByPage = filteredListServiceApp.paged( $scope.filteredList, $scope.pageSize );         
     };
 
     $scope.setPage = function () {
@@ -99,11 +99,11 @@ var AppController = app.controller('AppController', function ($scope, $filter, f
 
 });
 
-AppController.$inject = ['$scope', '$filter','filteredListService'];
+AppController.$inject = ['$scope', '$filter','filteredListServiceApp'];
 
-function searchUtil(item, toSearch) {
+function searchUtilApp(item, toSearch) {
     /* Search Text in all 3 fields */
-    return (item.CreationDate.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.ServerStatus.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Domain.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||  item.AppSip > toSearch ||  item.AppSic > toSearch) ? true : false;
+    return (item.Type.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.ServerStatus.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Domain.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||  item.AppSip == toSearch ||  item.AppSic == toSearch) ? true : false;
 }
 
 function getData() {

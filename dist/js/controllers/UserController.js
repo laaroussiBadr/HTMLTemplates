@@ -1,4 +1,4 @@
-var UserController = app.controller('UserController', function ($scope, $filter, filteredListService) {
+var UserController = app.controller('UserController', function ($scope, $filter, filteredListServiceUser) {
  
     $scope.pageSize = 4;
     $scope.allItems = getDummyData(); 
@@ -13,7 +13,7 @@ var UserController = app.controller('UserController', function ($scope, $filter,
 
     $scope.search = function () {
         $scope.filteredList = 
-       filteredListService.searched($scope.allItems, $scope.searchText);
+       filteredListServiceUser.searched($scope.allItems, $scope.searchText);
         
         if ($scope.searchText == '') {
             $scope.filteredList = $scope.allItems;
@@ -22,7 +22,7 @@ var UserController = app.controller('UserController', function ($scope, $filter,
     }
 
     $scope.pagination = function () {
-        $scope.ItemsByPage = filteredListService.paged( $scope.filteredList, $scope.pageSize );         
+        $scope.ItemsByPage = filteredListServiceUser.paged( $scope.filteredList, $scope.pageSize );         
     };
 
     $scope.setPage = function () {
@@ -95,11 +95,11 @@ var UserController = app.controller('UserController', function ($scope, $filter,
     
 });
 
-UserController.$inject = ['$scope', '$filter','filteredListService'];
+UserController.$inject = ['$scope', '$filter','filteredListServiceUser'];
 
 function searchUtil(item, toSearch) {
     /* Search Text in all 3 fields */
-    return (item.name.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Email.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.EmpId == toSearch) ? true : false;
+    return (item.Phone.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.name.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Email.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.EmpId == toSearch) ? true : false;
 }
 
 function getDummyData() {
