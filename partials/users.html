@@ -1,0 +1,46 @@
+<br />
+<br />
+<div>
+    <div>
+        <div class="input-group">
+            <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <table class="table  table-hover data-table myTable">
+        <thead>
+            <tr>
+                <th class="EmpId"> <a ng-click="sort('EmpId',$event)" >EmpId  <span class="{{Header[0]}}"></span></a></th>
+                <th class="name"> <a ng-click="sort('name')"> Name <span class="{{Header[1]}}"></span></a> </th>
+                <th class="Email"> <a ng-click="sort('Email')"> Email <span class="{{Header[2]}}"></span></a> </th>
+                <th> <a ng-click="sort('Role')"> Role <span class="{{Header[3]}}"></span></a> </th>
+                <th> <a ng-click="sort('Phone')"> Phone <span class="{{Header[4]}}"></span></a></th>
+                <th><a>Edit</a></th>
+                <th><a>Remove</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+                <td>{{item.EmpId}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.Email}}</td>
+                <td>{{item.Role}}</td>
+                <td>{{item.Phone}}</td>
+                <td><button class="glyphicon glyphicon-edit"></button></td>
+                <td><button class="glyphicon glyphicon-remove"></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination pagination-sm">
+        <li ng-class="{active:0}"><a ng-click="firstPage()">First</a>
+
+        </li>
+        <li ng-repeat="n in range(ItemsByPage.length)"> <a ng-click="setPage()" ng-bind="n+1">1</a>
+
+        </li>
+        <li><a ng-click="lastPage()">Last</a>
+
+        </li>
+    </ul>
+</div>
+</div>
