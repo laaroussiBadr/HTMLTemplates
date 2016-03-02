@@ -1,8 +1,9 @@
 
 var app = angular.module('myApp', ['ngRoute']);
 
-app.config(function($routeProvider) {
-  $routeProvider.when('/Users', {
+app.config(function($routeProvider, $locationProvider) {
+  $routeProvider.
+  				when('/Users', {
 				templateUrl : 'partials/users.html',
 				controller  : 'UserController'
 				})
@@ -14,4 +15,13 @@ app.config(function($routeProvider) {
 				templateUrl : 'partials/applications.html',
 				controller  : 'AppController'
 				})
+				.when('/AppDetails', {
+				templateUrl : 'partials/appdetails.html',
+				controller  : 'appDetailsController'
+				})
+				.when('/Sessions', {
+				templateUrl : 'partials/sessions.html',
+				controller  : 'SessionController'
+				});
+	$locationProvider.html5Mode(true);
 })

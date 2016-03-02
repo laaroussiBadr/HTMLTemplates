@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
+  <base href="/">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dashboard Support</title>
@@ -42,37 +43,35 @@
         </div>
       </nav>
     </header>
+
     <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
 
           <li class="active treeview">
             <a href="#"><i class="fa fa-user-plus"></i> <span>Utilisateurs</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
-              <li><a href="#Users"><i class=""></i> List Utilisateurs</a></li>
-              <li><a href="#AddUser"><i class=""></i>Ajouter Utilisateur</a></li>
+              <li><a href="Users"><i class=""></i> List Utilisateurs</a></li>
+              <li><a href="AddUser"><i class=""></i>Ajouter Utilisateur</a></li>
             </ul>
           </li>
           <li><a href="#"><i class="fa fa-users"></i> <span>Clients</span></a></li>
-          <li><a href="#Apps"><i class="fa fa-laptop"></i> <span>Applications</span></a></li>
-          <li><a href="#"><i class="fa fa-unlock-alt"></i> <span>Sessions</span></a></li>
+          <li><a href="Apps"><i class="fa fa-laptop"></i> <span>Applications</span></a></li>
+          <li><a href="Sessions"><i class="fa fa-unlock-alt"></i> <span>Sessions</span></a></li>
         </ul>
       </section>
-      <!-- /.sidebar -->
     </aside>
 
     <div class="content-wrapper">
       <div ng-view></div>
     </div>
+
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
         <b>Version</b> 2.3.0
       </div>
-      <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2016, 4D Logiciels Maroc</strong> All rights reserved.
     </footer>
 
     <div class="control-sidebar-bg"></div>
@@ -90,8 +89,11 @@
   <script src="dist/js/app.min.js"></script>
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="dist/js/routing.js"></script>
-  <script type="text/javascript" src="dist/js/controllers/UserController.js"></script>
   <script type="text/javascript" src="dist/js/services/filteredListService.js"></script>
+  <script type="text/javascript" src="dist/js/services/sharedData.js"></script>
+  <script type="text/javascript" src="dist/js/controllers/UserController.js"></script>
+  <script type="text/javascript" src="dist/js/controllers/AppDetailsController.js"></script>
   <script type="text/javascript" src="dist/js/controllers/ApplicationsController.js"></script>
+  <script type="text/javascript" src="dist/js/controllers/SessionController.js"></script>
 </body>
 </html>

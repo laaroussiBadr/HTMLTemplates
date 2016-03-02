@@ -1,0 +1,37 @@
+<br/>
+<br/>
+<div class="col-sm-11 col-md-11 main">
+	<div class="col-sm-12">
+		<div class ="row">
+			<div>
+				<div>
+					<div class="input-group">
+						<input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-search"></span>
+						</span>
+					</div>
+					<table class="table table-hover data-table">
+						<thead>
+							<tr>
+								<th><a ng-click="sort('UID',$event)" >Session UID<span class="{{Header[0]}}"></span></a></th>
+								<th><a ng-click="sort('OSInfo')">Os Info<span class="{{Header[1]}}"></span></a> </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+								<td>{{item.UID}}</td>
+								<td>{{item.OSInfo}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<ul class="pagination pagination-sm">
+						<li ng-class="{active:0}"><a ng-click="firstPage()">First</a></li>
+						<li ng-repeat="n in range(ItemsByPage.length)"> <a ng-click="setPage()" ng-bind="n+1">1</a></li>
+						<li><a ng-click="lastPage()">Last</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

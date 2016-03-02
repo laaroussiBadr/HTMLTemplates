@@ -1,4 +1,4 @@
-var AppController = app.controller('AppController', function ($scope, $filter, filteredListServiceApp) {
+var AppController = app.controller('AppController', function ($scope, $filter,$location,filteredListServiceApp, SharedData) {
 
 	$scope.pageSize = 4;
     $scope.allItems = getData(); 
@@ -95,11 +95,16 @@ var AppController = app.controller('AppController', function ($scope, $filter, f
         $scope.pagination();    
     };
     
-    $scope.sort ('ServerStatus');  
+    $scope.sort ('ServerStatus');
+
+    $scope.getAppDetails = function(appDetails) {
+        SharedData.setAppDetails(appDetails);
+        $location.path("/AppDetails");
+    }
 
 });
 
-AppController.$inject = ['$scope', '$filter','filteredListServiceApp'];
+AppController.$inject = ['$scope', '$filter','filteredListServiceApp', 'SharedData'];
 
 function searchUtilApp(item, toSearch) {
     /* Search Text in all 3 fields */
