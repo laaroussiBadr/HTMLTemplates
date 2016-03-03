@@ -7,13 +7,13 @@
             <span class="glyphicon glyphicon-search"></span>
         </span>
     </div>
-    <table class="table  table-hover data-table">
+    <table class="table  table-hover data-table myTable">
         <thead>
             <tr>
-                <th class="UID"> <a ng-click="sort('UID',$event)" >EmpId  <span class="{{Header[0]}}"></span></a></th>
-                <th class="fullName"> <a ng-click="sort('fullName')"> Name <span class="{{Header[1]}}"></span></a> </th>
+                <th class="EmpId"> <a ng-click="sort('EmpId',$event)" >EmpId  <span class="{{Header[0]}}"></span></a></th>
+                <th class="name"> <a ng-click="sort('name')"> Name <span class="{{Header[1]}}"></span></a> </th>
                 <th class="Email"> <a ng-click="sort('Email')"> Email <span class="{{Header[2]}}"></span></a> </th>
-                <th> <a ng-click="sort('Country')"> Country <span class="{{Header[3]}}"></span></a> </th>
+                <th> <a ng-click="sort('Role')"> Role <span class="{{Header[3]}}"></span></a> </th>
                 <th> <a ng-click="sort('Phone')"> Phone <span class="{{Header[4]}}"></span></a></th>
                 <th><a>Edit</a></th>
                 <th><a>Remove</a></th>
@@ -26,7 +26,7 @@
                 <td>{{user.Email}}</td>
                 <td>{{user.Role}}</td>
                 <td>{{user.Phone}}</td>
-                <td><button class="glyphicon glyphicon-edit " ng-click="showModal(user)"></button></td>
+                <td><button class="glyphicon glyphicon-edit" ng-click="showModal(user)"></button></td>
                 <td><button class="glyphicon glyphicon-remove" ng-click="showModalsup(user)"></button></td>
             </tr>
         </tbody>
@@ -49,7 +49,7 @@
         <div  class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"><h2>Confirmation</h2></div>
-                <div class="modal-body">Voulez-vous supprimer cette élement ? <input type="hidden" name="id" ng-model="user.EmpId"/></div>
+                <div class="modal-body">Voulez-vous supprimer cette élement ? <input type="text" name="id" ng-model="user.EmpId"/></div>
                 <div class="modal-footer">
                     
                     <button class="btn btn-primary" ng-click="supprimer(user.EmpIds)">Confirmer</button>

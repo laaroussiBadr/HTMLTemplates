@@ -10,4 +10,9 @@ app.config(function($routeProvider) {
 				templateUrl : 'partials/addUser.html',
 				controller  : 'UserController'
 				})
+				.when('/customer', {
+				templateUrl : 'partials/Customers.html',
+				controller  : 'CustomerController'
+				})
+  				
 })
