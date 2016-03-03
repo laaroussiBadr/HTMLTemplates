@@ -3,6 +3,10 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider.
+  				when('/', {
+				templateUrl : 'partials/index.html'
+				})
+				.
   				when('/Users', {
 				templateUrl : 'partials/users.html',
 				controller  : 'UserController'

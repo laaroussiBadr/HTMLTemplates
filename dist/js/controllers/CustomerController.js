@@ -1,4 +1,5 @@
-var CustomerController = app.controller('CustomerController', function ($scope, $filter, filteredListServiceCustomer) {
+var CustomerController = app.controller('CustomerController', 
+    function ($scope, $location, $filter, filteredListServiceCustomer, SharedData) {
     $scope.customer='';
     $scope.pageSize = 4;
     $scope.allItems = getCustomerData(); 
@@ -60,85 +61,89 @@ var CustomerController = app.controller('CustomerController', function ($scope, 
         $scope.filteredList = $filter('orderBy')($scope.filteredList, $scope.columnToOrder, $scope.reverse); 
 
         if($scope.reverse)
-           iconName = 'glyphicon glyphicon-chevron-up';
-       else
-           iconName = 'glyphicon glyphicon-chevron-down';
+         iconName = 'glyphicon glyphicon-chevron-up';
+        else
+         iconName = 'glyphicon glyphicon-chevron-down';
 
-       if(sortBy === 'UID')
-       {
-        $scope.Header[0] = iconName;
-    }
-    else if(sortBy === 'Email')
-    {
-        $scope.Header[2] = iconName;
-    }
+        if(sortBy === 'UID')
+        {
+            $scope.Header[0] = iconName;
+        }
+        else if(sortBy === 'Email')
+        {
+            $scope.Header[2] = iconName;
+        }
 
-    else if(sortBy === 'fullName')
-    {
-        $scope.Header[1] = iconName;
-    }
-    else if(sortBy === 'Country')
-    {
-        $scope.Header[3] = iconName;
-    }
+        else if(sortBy === 'fullName')
+        {
+            $scope.Header[1] = iconName;
+        }
+        else if(sortBy === 'Country')
+        {
+            $scope.Header[3] = iconName;
+        }
 
 
-    $scope.reverse = !$scope.reverse;   
+        $scope.reverse = !$scope.reverse;   
 
-    $scope.pagination();    
-};
+        $scope.pagination();    
+    };
 
-$scope.sort ('UID');  
-
-    /////////////////Modal////////////
+    $scope.sort ('UID');  
 
     $scope.hideModalsup = function(){
-        $('#Modalsup').modal('hide');
+            $('#Modalsup').modal('hide');
     }
-    $scope.showModalsup = function(c){
-       $scope.customer=U;
-       $('#Modalsup').modal('show');
+    $scope.showModalsup = function(c) {     
+        $scope.customer=U;
+        $('#Modalsup').modal('show');
+    }
 
-   }
     $scope.hideModal = function(){
-    $('#myModal').modal('hide');
-
+        $('#myModal').modal('hide');
     }
     $scope.showModal = function(c){
+        $scope.customer=c;
+        $('#myModal').modal('show');
+    }
 
-    $scope.customer=c;
-    $('#myModal').modal('show');
+    $scope.showModalreset = function(c){
+        $scope.customer=c;
+        $('#myModalreset').modal('show');
+    }
+    $scope.hideModalreset = function(){
+        $('#myModalreset').modal('hide');
+    }
 
-}
+    $scope.session = function(customer) {
+        $('#myModal').modal('hide');
+        var session = {
+            UID:1,
+            OSInfo: 'Chrome'
+        };
+        SharedData.setSessionDetails(session);
+        $location.path("/Sessions");
+    }
 
-$scope.showModalreset = function(c){
-
-    $scope.customer=c;
-    $('#myModalreset').modal('show');
-
-}
- $scope.hideModalreset = function(){
-    $('#myModalreset').modal('hide');
-}
-
+    $scope.showApps = function(customer) {
+        var app = {
+            AppSic:12,
+            AppSip:54,
+            Domain:'.com',
+            CreationDate:new Date(),
+            Type : 'Type1',
+            ServerStatus: 'Up'
+        };
+        SharedData.setAppDetails(app);
+        $location.path("/Apps");
+    }
 });
-
-CustomerController.$inject = ['$scope', '$filter','filteredListServiceCustomer'];
-
+CustomerController.$inject = ['$scope', '$filter','SharedData','filteredListServiceCustomer'];
 function searchUtilCustomer(item, toSearch) {
     /* Search Text in all 3 fields */
     return (item.fullName.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Email.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||item.UID == toSearch) ? true : false;
 }
-
-
-
-
-
-
-
-    ///////////////DATA///////////////////
-
-    function getCustomerData() {
+function getCustomerData() {
         return [
         {
             UID: 1,
@@ -177,4 +182,4 @@ function searchUtilCustomer(item, toSearch) {
         }
 
         ];
-    }
+}
