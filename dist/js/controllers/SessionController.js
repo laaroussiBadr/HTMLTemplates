@@ -1,4 +1,4 @@
-var SessionController = app.controller('SessionController', function ($scope, $filter,filteredListServiceSession) {
+var SessionController = app.controller('SessionController', function ($scope, $filter, SharedData,filteredListServiceSession) {
 
 	$scope.pageSize = 4;
     $scope.allItems = getSessionData(); 
@@ -6,14 +6,17 @@ var SessionController = app.controller('SessionController', function ($scope, $f
  
     $scope.resetAll = function () {
         $scope.filteredList = $scope.allItems;
-        $scope.searchText = '';
+        if(typeof SharedData.getSessionDetails().UID==='undefined')
+            $scope.searchText = '';
+        else
+            $scope.searchText = String(SharedData.getSessionDetails().UID);
+        SharedData.setSessionDetails([]);
         $scope.currentPage = 0;
         $scope.Header = ['',''];
     }
 
     $scope.search = function () {
-        $scope.filteredList = 
-       filteredListServiceSession.searched($scope.allItems, $scope.searchText);
+        $scope.filteredList = filteredListServiceSession.searched($scope.allItems, $scope.searchText);
         
         if ($scope.searchText == '') {
             $scope.filteredList = $scope.allItems;
@@ -53,10 +56,9 @@ var SessionController = app.controller('SessionController', function ($scope, $f
     
     $scope.sort = function(sortBy){
         $scope.resetAll();  
-        
+
         $scope.columnToOrder = sortBy; 
-             
-        //$Filter - Standard Service
+        $scope.search();
         $scope.filteredList = $filter('orderBy')($scope.filteredList, $scope.columnToOrder, $scope.reverse); 
 
         if($scope.reverse)
@@ -66,11 +68,11 @@ var SessionController = app.controller('SessionController', function ($scope, $f
               
         if(sortBy === 'UID')
         {
-            $scope.Header[1] = iconName;
+            $scope.Header[0] = iconName;
         }
         if(sortBy === 'OSInfo')
         {
-            $scope.Header[0] = iconName;
+            $scope.Header[1] = iconName;
         }
          
         $scope.reverse = !$scope.reverse;   
@@ -82,7 +84,7 @@ var SessionController = app.controller('SessionController', function ($scope, $f
 
 });
 
-SessionController.$inject = ['$scope', '$filter','filteredListServiceSession'];
+SessionController.$inject = ['$scope', '$filter','SharedData','filteredListServiceSession'];
 
 function searchUtilSession(item, toSearch) {
     return (item.OSInfo.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 ||  item.UID == toSearch) ? true : false;

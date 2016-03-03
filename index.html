@@ -16,9 +16,9 @@
   <div class="wrapper">
 
     <header class="main-header">
-      <a href="index.html" class="logo">
-        <span class="logo-mini"></span>
-        <span class="logo-lg"><b>Wakanda</b>Cloud</span>
+      <a href="/" class="logo">
+        <span class="logo-mini"><img class="img_logo" src="https://dfn9r80xx3aos.cloudfront.net/v1/img/logo.png" height="30"></span>
+        <span class="logo-lg"><img class="img_logo" src="https://dfn9r80xx3aos.cloudfront.net/v1/img/logo.png" height="39"></span>
       </a>
       <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -26,18 +26,20 @@
         </a>
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <li class="dropdown user user-menu">
-              <a class="dropdown-toggle" data-toggle="dropdown">
-                <span class="hidden-xs">LAAROUSSI BADR-EDDINE</span>
+            <li class="dropdown user user-menu" style="cursor:pointer;">
+              <a class="dropdown-toggle ng-binding" data-toggle="dropdown">
+                <span class="hidden-xs"><i class="glyphicon glyphicon-user">&nbsp;</i>LAAROUSSI BADR-EDDINE <b class="caret"></b></span>
               </a>
-              <ul class="dropdown-menu">
-                <li class="user-header">
-                  <p>
-                    LAAROUSSI BADR-EDDINE - Web Developer
-                    <small>Member since Nov. 2035</small>
-                  </p>
-                </li>
-              </ul>
+
+            <ul class="dropdown-menu">
+          <li><a href="#/profil"><i class="glyphicon glyphicon-user"></i> Profil</a>
+          </li>
+          <!-- ngIf: false -->
+          <li><a href="#/profil/change_pwd"><i class="glyphicon glyphicon-lock"></i> Change Password</a>
+          </li>
+          <li class="divider"></li>
+          <li ng-click="logout()"><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+        </ul>
             </li>
           </ul>
         </div>
@@ -47,7 +49,6 @@
     <aside class="main-sidebar">
       <section class="sidebar">
         <ul class="sidebar-menu">
-          <li class="header">MAIN NAVIGATION</li>
 
           <li class="active treeview">
             <a href="#"><i class="fa fa-user-plus"></i> <span>Utilisateurs</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -56,7 +57,7 @@
               <li><a href="AddUser"><i class=""></i>Ajouter Utilisateur</a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="fa fa-users"></i> <span>Clients</span></a></li>
+          <li><a href="customer"><i class="fa fa-users"></i> <span>Clients</span></a></li>
           <li><a href="Apps"><i class="fa fa-laptop"></i> <span>Applications</span></a></li>
           <li><a href="Sessions"><i class="fa fa-unlock-alt"></i> <span>Sessions</span></a></li>
         </ul>
@@ -89,6 +90,9 @@
   <script src="dist/js/app.min.js"></script>
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="dist/js/routing.js"></script>
+
+  <script type="text/javascript" src="dist/js/controllers/UserController.js"></script>
+  <script type="text/javascript" src="dist/js/controllers/CustomerController.js"></script>
   <script type="text/javascript" src="dist/js/services/filteredListService.js"></script>
   <script type="text/javascript" src="dist/js/services/sharedData.js"></script>
   <script type="text/javascript" src="dist/js/controllers/UserController.js"></script>

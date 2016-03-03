@@ -3,6 +3,10 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider.
+  				when('/', {
+				templateUrl : 'partials/index.html'
+				})
+				.
   				when('/Users', {
 				templateUrl : 'partials/users.html',
 				controller  : 'UserController'
@@ -22,6 +26,10 @@ app.config(function($routeProvider, $locationProvider) {
 				.when('/Sessions', {
 				templateUrl : 'partials/sessions.html',
 				controller  : 'SessionController'
+				})
+				.when('/customer', {
+				templateUrl : 'partials/Customers.html',
+				controller  : 'CustomerController'
 				});
-	$locationProvider.html5Mode(true);
+  	$locationProvider.html5Mode(true);
 })

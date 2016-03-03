@@ -6,7 +6,11 @@ var AppController = app.controller('AppController', function ($scope, $filter,$l
  
     $scope.resetAll = function () {
         $scope.filteredList = $scope.allItems;
-        $scope.searchText = '';
+        if(typeof SharedData.getAppDetails().AppSic==='undefined')
+            $scope.searchText = '';
+        else
+            $scope.searchText = String(SharedData.getAppDetails().AppSic);
+        SharedData.setAppDetails([]);
         $scope.currentPage = 0;
         $scope.Header = ['','','','','',''];
     }
@@ -55,7 +59,7 @@ var AppController = app.controller('AppController', function ($scope, $filter,$l
         $scope.resetAll();  
         
         $scope.columnToOrder = sortBy; 
-             
+        $scope.search();
         //$Filter - Standard Service
         $scope.filteredList = $filter('orderBy')($scope.filteredList, $scope.columnToOrder, $scope.reverse); 
 
