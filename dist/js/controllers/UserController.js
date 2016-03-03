@@ -1,5 +1,6 @@
 var UserController = app.controller('UserController', function ($scope, $filter, filteredListServiceUser) {
  
+    $scope.user='';
     $scope.pageSize = 4;
     $scope.allItems = getDummyData(); 
     $scope.reverse = false;
@@ -93,6 +94,28 @@ var UserController = app.controller('UserController', function ($scope, $filter,
     
     $scope.sort ('name');  
     
+    /////////////////Modal////////////
+
+$scope.hideModalsup = function(){
+        $('#Modalsup').modal('hide');
+    }
+    $scope.showModalsup = function(U){
+         $scope.user=U;
+        $('#Modalsup').modal('show');
+
+    }
+$scope.hideModal = function(){
+        $('#myModal').modal('hide');
+        
+    }
+    $scope.showModal = function(U){
+
+        $scope.user=U;
+        $('#myModal').modal('show');
+
+    }
+
+
 });
 
 UserController.$inject = ['$scope', '$filter','filteredListServiceUser'];
@@ -101,6 +124,14 @@ function searchUtil(item, toSearch) {
     /* Search Text in all 3 fields */
     return (item.Phone.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.name.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Email.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.EmpId == toSearch) ? true : false;
 }
+
+
+
+
+
+
+
+    ///////////////DATA///////////////////
 
 function getDummyData() {
     return [

@@ -7,27 +7,27 @@
             <span class="glyphicon glyphicon-search"></span>
         </span>
     </div>
-    <table class="table  table-hover data-table">
+    <table class="table  table-hover data-table TableC">
         <thead>
             <tr>
-                <th class="UID"> <a ng-click="sort('UID',$event)" >EmpId  <span class="{{Header[0]}}"></span></a></th>
-                <th class="fullName"> <a ng-click="sort('fullName')"> Name <span class="{{Header[1]}}"></span></a> </th>
-                <th class="Email"> <a ng-click="sort('Email')"> Email <span class="{{Header[2]}}"></span></a> </th>
+                <th> <a ng-click="sort('UID',$event)" >UID  <span class="{{Header[0]}}"></span></a></th>
+                <th> <a ng-click="sort('fullName')"> FullName <span class="{{Header[1]}}"></span></a> </th>
+                <th> <a ng-click="sort('Email')"> Email <span class="{{Header[2]}}"></span></a> </th>
                 <th> <a ng-click="sort('Country')"> Country <span class="{{Header[3]}}"></span></a> </th>
-                <th> <a ng-click="sort('Phone')"> Phone <span class="{{Header[4]}}"></span></a></th>
-                <th><a>Edit</a></th>
-                <th><a>Remove</a></th>
+                <th> <a>Create Session</a></span></a></th>
+                <th><a>Client Applications</a></th>
+                <th><a>Reset Password</a></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="user in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
-                <td>{{user.EmpId}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.Email}}</td>
-                <td>{{user.Role}}</td>
-                <td>{{user.Phone}}</td>
-                <td><button class="glyphicon glyphicon-edit " ng-click="showModal(user)"></button></td>
-                <td><button class="glyphicon glyphicon-remove" ng-click="showModalsup(user)"></button></td>
+            <tr ng-repeat="customer in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+                <td>{{customer.UID}}</td>
+                <td>{{customer.fullName}}</td>
+                <td>{{customer.Email}}</td>
+                <td>{{customer.Country}}</td>
+                <td><button class="btn btn-primary btn-xs"value="CreateSession" ng-click="showModal(customer)">Create Session</button></td>
+                <td><button class="btn btn-primary btn-xs" value="Applications" ng-click="showModal(customer)">Show Applicaations</button></td>
+                <td><button class="btn btn-primary btn-xs"value="ResetPassword" ng-click="showModalreset(customer)">Reset Password</button></td>
             </tr>
         </tbody>
     </table>
@@ -45,23 +45,11 @@
 </div>
 </div>
 
-<div id="Modalsup" class="modal fade" role="dialog">
+<!-- Modal create session  -->
+<div id="myModalsup" class="modal fade" role="dialog">
         <div  class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h2>Confirmation</h2></div>
-                <div class="modal-body">Voulez-vous supprimer cette élement ? <input type="hidden" name="id" ng-model="user.EmpId"/></div>
-                <div class="modal-footer">
-                    
-                    <button class="btn btn-primary" ng-click="supprimer(user.EmpIds)">Confirmer</button>
-                    <button class="btn" ng-click="hideModalsup()">Annuler</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div  class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header"><b>Modifier Utilisateur</b></div>
+                <div class="modal-header"><b>Creer Session</b></div>
                 <form class="form-horizontal" >
                     <div class="modal-body">
                         <div class="form-group">
@@ -71,7 +59,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="Title">email:</label>
+                            <label class="control-label col-sm-2" for="Title">URL:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="title" ng-model="user.Email" required/>
                             </div>
@@ -97,6 +85,29 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+     <div id="myModal" class="modal fade" role="dialog">
+        <div  class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h2></h2></div>
+                <div class="modal-body"><b>La session a été crée avec success</b></div>
+                <div class="modal-footer">
+                    <input type="button" value="Voir Session" ng-click="session(customer)" class="btn btn-primary"/>
+                    <button class="btn" ng-click="hideModal()">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModalreset" class="modal fade" role="dialog">
+        <div  class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h2></h2></div>
+                <div class="modal-body"><b>Mot de passe a été réinitialisé avec success</b> </div>
+                <div class="modal-footer">
+                    <button class="btn" ng-click="hideModalreset()">Annuler</button>
+                </div>
             </div>
         </div>
     </div>

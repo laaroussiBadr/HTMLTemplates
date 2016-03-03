@@ -22,6 +22,10 @@ app.config(function($routeProvider, $locationProvider) {
 				.when('/Sessions', {
 				templateUrl : 'partials/sessions.html',
 				controller  : 'SessionController'
+				})
+				.when('/customer', {
+				templateUrl : 'partials/Customers.html',
+				controller  : 'CustomerController'
 				});
-	$locationProvider.html5Mode(true);
+  	$locationProvider.html5Mode(true);
 })

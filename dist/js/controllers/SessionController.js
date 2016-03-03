@@ -66,11 +66,11 @@ var SessionController = app.controller('SessionController', function ($scope, $f
               
         if(sortBy === 'UID')
         {
-            $scope.Header[1] = iconName;
+            $scope.Header[0] = iconName;
         }
         if(sortBy === 'OSInfo')
         {
-            $scope.Header[0] = iconName;
+            $scope.Header[1] = iconName;
         }
          
         $scope.reverse = !$scope.reverse;   
